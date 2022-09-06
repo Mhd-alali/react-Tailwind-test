@@ -1,48 +1,47 @@
-import * as React from 'react'
-import { Section } from './components/section';
+import React, { useState, useEffect, Suspense } from 'react'
 import { Nav } from './components/nav';
-import { Header } from './components/header';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import {getRecipes} from './api/recipes'
+import { getRecipes } from './api/recipes'
 import Loading from './components/loading';
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+const Landing = React.lazy(() => import('./pages/landing'));
+const Recipe = React.lazy(() => import('./pages/recipe'));
+
 function App() {
-  const [recipes,setRecipes] = useState([])
-  const [loading,setLoading] = useState(true)
+  const [recipes, setRecipes] = useState([])
+  const [loading, setLoading] = useState(true)
 
   async function GetSectionsRecipes() {
-     const main = getRecipes(6,'main dish')
-     const side = getRecipes(6,'side dish')
-     const dessert = getRecipes(6,'dessert')
+    const main = getRecipes(6, 'main dish')
+    const side = getRecipes(6, 'side dish')
+    const dessert = getRecipes(6, 'dessert')
 
-     return Promise.all([main,side,dessert])
+    return Promise.all([main, side, dessert])
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     setTimeout(() => {
       setLoading(false)
     }, 1000);
-  },[])
+  }, [])
 
   return (
     <>
-    <Loading isLoading={loading}/>
-    {loading ||
-      <>
-      <div>
-        <Nav/>
-      </div>
-      <main className='bg-gray-200 rounded-md flow-root mb-10 relative'>
-        <header className='container pt-5 '>
-          <Header type="h2" className=" md:text-center font-semibold">Recipes</Header>
-          <Header type="h3" className=" md:text-center mt-2 text-gray-600 font-semibold">For Nerds</Header>
-        </header>
-        {['Main Dishes',"Side Dishes","Dessert"].map((section,index) => <Section recipes={recipes[index]} key={section} section={section}/>)}
-      </main>
-      </>
+      <Loading isLoading={loading} />
+      {loading ||
+        <Router>
+          <div>
+            <Nav />
+          </div>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<Landing recipes={recipes} />} />
+              <Route path="/:id" element={<Recipe />} />
+            </Routes>
+          </Suspense>
+        </Router>
       }
-      </>
+    </>
   )
 }
 

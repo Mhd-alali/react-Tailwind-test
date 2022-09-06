@@ -1,12 +1,11 @@
 import React from "react";
 import { Button } from "./button";
 import { Card } from "./card";
-import { Header } from "./header";
 
 export function Section({section,recipes}) {
   return <>
         <div className='border-gray-300 border-b-2 mt-16'>
-        <Header type="h4" className="container font-bold pb-2">{section}</Header>
+        <h4 className="text-3xl container font-bold pb-2">{section}</h4>
         </div>
         
         <div className="container mt-8 grid md:grid-cols-3 gap-4">
