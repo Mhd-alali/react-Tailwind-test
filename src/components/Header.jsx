@@ -11,7 +11,7 @@ export function Header({children,type,className}) {
     return <h3 className={"text-2xl font-lora " +className}>{children}</h3>;
   }
   if (type === 'h4') {
-    return <h4 className={"text-2xl font-lora " +className}>{children}</h4>;
+    return <h4 className={"text-3xl font-lora " +className}>{children}</h4>;
   }
   if (type === 'h5') {
     return <h5 className={"text-xl  font-lora " +className}>{children}</h5>;
@@ -20,4 +20,3 @@ export function Header({children,type,className}) {
     return <h6 className={"text-xl  font-lora " + className}>{children}</h6>;
   }
 }
-  

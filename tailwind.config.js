@@ -14,7 +14,7 @@ module.exports = {
             },
             fontFamily:{
                 sans:['Open Sans'],
-                lora:['Lora']
+                lora:['Roboto Slab']
             }
         },
     },

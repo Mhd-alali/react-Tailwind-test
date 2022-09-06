@@ -1,8 +1,9 @@
 import React from "react";
 export function Card({imgSrc,recipe,shef,time}) {
+  
   return (
-    <div className="bg-white rounded overflow-hidden shadow-lg relative md:hover:-translate-y-1 transition">
-      <img src={imgSrc} alt="" className="w-full sm:aspect-auto object-cover"/>
+    <div className={"bg-white rounded overflow-hidden shadow-lg relative md:hover:-translate-y-1"}>
+      <img src={imgSrc} alt="" className="w-full sm:aspect-auto object-cover "/>
       <div className="m-4">
         <span className="font-bold">{recipe}</span>
         <span className="block text-gray-500 text-sm">Recipe By {shef}</span>
