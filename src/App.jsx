@@ -1,14 +1,11 @@
-import React, { useState, useEffect, Suspense } from 'react'
+import React, { useState, useEffect} from 'react'
 import { getRecipes } from './api/recipes'
 
+import AnimatedRoutes from './pages/animatedRoutes';
 import { Nav } from './components/nav';
 import Loading from './components/loading';
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { AnimatePresence } from 'framer-motion';
-
-const Landing = React.lazy(() => import('./pages/landing'));
-const Recipe = React.lazy(() => import('./pages/recipe'));
+import { BrowserRouter as Router } from "react-router-dom"
 
 function App() {
   const [recipes, setRecipes] = useState([])
@@ -36,14 +33,7 @@ function App() {
           <div>
             <Nav />
           </div>
-          <Suspense fallback={null}>
-            <AnimatePresence initial={false} mode="wait" >
-              <Routes>
-                <Route path="/" element={<Landing recipes={recipes} />} />
-                <Route path="/:id" element={<Recipe />} />
-              </Routes>
-            </AnimatePresence>
-          </Suspense>
+          <AnimatedRoutes recipes={recipes} />
         </Router>
       }
     </>
