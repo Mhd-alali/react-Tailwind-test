@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import { motion } from "framer-motion"
+import {transition} from '../animation'
 
 export function Card({ imgSrc, recipe, shef, time }) {
 
   return (
     <Link to="/23">
-      <div className={"bg-white rounded overflow-hidden shadow-lg relative md:hover:-translate-y-[2px] transition"}>
-        <img src={imgSrc} alt="" className="w-full sm:aspect-auto object-cover " />
+      <motion.div className={"bg-white rounded overflow-hidden shadow-lg relative md:hover:-translate-y-[2px] transition"}>
+        <motion.img src={imgSrc} alt="" className="w-full sm:aspect-auto object-cover"/>
         <div className="m-4">
-          <span className="font-bold">{recipe}</span>
+          <motion.span className="font-bold">{recipe}</motion.span>
           <span className="block text-gray-500 text-sm">Recipe By {shef}</span>
         </div>
         <div className="bg-secondary-100 text-secondary-200 text-xs font-bold rounded p-1 absolute top-2 left-2">
@@ -17,7 +19,7 @@ export function Card({ imgSrc, recipe, shef, time }) {
           </svg>
             <time>{time}</time> mins</span>
         </div>
-      </div>
+      </motion.div>
     </Link>
   );
 }

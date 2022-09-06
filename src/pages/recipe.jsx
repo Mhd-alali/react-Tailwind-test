@@ -9,7 +9,7 @@ function Recipe() {
             <div className="h-[50vh] flex items-center justify-center ">
                 <h1 >5 Bean Chilli Stew</h1>
             </div>
-            <img src="./img/3.jpg" alt="" className='h-[30vh] w-full '/>
+            <img src="./img/3.jpg" alt="" className='h-[30vh] w-full object-cover'/>
         </div>
     );
 }
