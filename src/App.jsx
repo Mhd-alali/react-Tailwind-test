@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     (async ()=>{
-      // setRecipes(await GetSectionsRecipes())
+     setRecipes(await GetSectionsRecipes())
     })()
     setTimeout(() => {
       setLoading(false)

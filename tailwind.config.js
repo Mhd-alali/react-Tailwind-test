@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     mode:"jit",
-    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    content: ['./src/**/*.{js,jsx,ts,tsx,json}'],
     darkMode: 'media', // or 'class'
     theme: {
         extend: {
@@ -18,5 +18,10 @@ module.exports = {
             }
         },
     },
-    plugins: [],
+    plugins: [
+        function ({ addVariant }) {
+            addVariant('child', '& > *');
+            addVariant('child-hover', '& > *:hover');
+        }
+    ],
 };
