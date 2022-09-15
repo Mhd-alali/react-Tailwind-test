@@ -10,7 +10,7 @@ function Home({ recipes }) {
             <Hero />
             <div className="">
                 <h3 className='font-bold text-5xl container mb-5 mt-12'>Menu</h3>
-                <div className="bg-gray-200 rounded-md space-y-14">
+                <div className="bg-gray-100 rounded-md space-y-14">
                     {['Main Dishes', "Side Dishes", "Dessert"].map((section, index) => <Section recipes={recipes[index]} key={section} section={section} />)}
                 </div>
             </div>

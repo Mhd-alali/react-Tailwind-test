@@ -14,15 +14,25 @@ function Recipe() {
 
   useEffect(() => {
     window.scrollTo({top : 0,left:0,behavior:"smooth"});
+    
     (async () => {
       setRecipe(await getRecipeInfo(id))
-      console.log(recipe);
     })();
+
   }, []);
 
-  const dangerousHTML = {
-    summary: { __html: recipe.summary },
-    instructions: { __html: recipe.instructions.slice(4).slice(0, -5)},
+  const dangerousHTMLSummary = ()=> {
+    if (recipe) {
+      return { __html: recipe.summary }
+    } 
+    return ""
+  };
+
+  const dangerousHTMLinstructions = ()=> { 
+    if (recipe) {
+      return { __html: recipe.instructions.slice(4).slice(0, -5)}
+    }
+    return ""
   };
     
   return (
@@ -41,7 +51,7 @@ function Recipe() {
 
       <h3 className="text-3xl my-5 pb-3 border-b border-b-slate-500">Summary</h3>
       <div className="text-md font-medium">
-        <p style={{letterSpacing:".2px",width:"80%"}} dangerouslySetInnerHTML={dangerousHTML.summary}></p>
+        <p style={{letterSpacing:".2px",width:"80%"}} dangerouslySetInnerHTML={dangerousHTMLSummary()}></p>
       </div>
 
       <h3 className="text-3xl my-5 pb-3 border-b border-b-slate-500">Ingredients</h3>
@@ -53,7 +63,7 @@ function Recipe() {
       </ul>
 
       <h4 className="text-3xl my-5 pb-3 border-b border-b-slate-500">Instructions</h4>
-      <ul className="list-disc container text-md font-medium" dangerouslySetInnerHTML={dangerousHTML.instructions}></ul>
+      <ul className="list-disc container text-md font-medium" dangerouslySetInnerHTML={dangerousHTMLinstructions()}></ul>
 
       <h3 className="text-3xl my-5 pb-3 border-b border-b-slate-500">Diets</h3>
       <ul className="list-disc container text-md font-medium">
