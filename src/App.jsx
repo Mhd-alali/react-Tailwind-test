@@ -5,9 +5,12 @@ import AnimatedRoutes from './pages/animatedRoutes';
 import { Nav } from './components/nav';
 import Loading from './components/loading';
 
+import {recipesObj} from "./fakeData"
+
 import { BrowserRouter as Router } from "react-router-dom"
 
 function App() {
+  // const [recipes, setRecipes] = useState([recipesObj.recipes,recipesObj.recipes,recipesObj.recipes])
   const [recipes, setRecipes] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -22,7 +25,7 @@ function App() {
   useEffect(() => {
     (async ()=>{
      setRecipes(await GetSectionsRecipes())
-    })()
+    })();
     setTimeout(() => {
       setLoading(false)
     }, 1000);

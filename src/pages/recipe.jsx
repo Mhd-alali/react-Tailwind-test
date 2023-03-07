@@ -7,11 +7,12 @@ import { useState } from "react";
 import {ReactComponent as Fork} from "../assets/icons/fork-and-knife.svg"
 import {ReactComponent as People} from "../assets/icons/people.svg"
 import {getRecipeInfo} from '../api/recipes'
-
+// import {recipeObj} from '../fakeData'
 function Recipe() {
   const { id } = useParams();
+  // const [recipe, setRecipe] = useState(recipeObj);
   const [recipe, setRecipe] = useState();
-
+  
   useEffect(() => {
     window.scrollTo({top : 0,left:0,behavior:"smooth"});
     
@@ -27,31 +28,28 @@ function Recipe() {
     } 
     return ""
   };
-
-  const dangerousHTMLinstructions = ()=> { 
-    if (recipe) {
-      return { __html: recipe.instructions.slice(4).slice(0, -5)}
-    }
-    return ""
-  };
     
   return (
-    <motion.div variants={pageFade} initial="from" animate="to" exit="exit" className="bg-white min-h-screen mb-10 flex flex-col container ">
+    <motion.div variants={pageFade} initial="from" animate="to" exit="exit" className="bg-white min-h-screen mb-10 container ">
       {recipe && <><div className="mb-5 flex items-center space-x-3">
-          <h1 className="font-bold text-4xl">{recipe.title}</h1>
-          <div className="bg-secondary-100 text-secondary-200 text-xs font-bold rounded p-1 translate-y-1">
-            <p className="flex items-center gap-1"><Fork/>Prep Time :{recipe.readyInMinutes}</p>
-          </div>
-          <div className="bg-secondary-100 text-secondary-200 text-xs font-bold rounded p-1 translate-y-1">
-            <p className="flex items-center gap-1"><People/>Servings :{recipe.servings}</p>
+          <div className="flex flex-col space-y-2">
+            <h1 className="font-bold text-4xl">{recipe.title}</h1>
+            <div className="flex space-x-1">
+              <div className="bg-secondary-100 text-secondary-200 text-xs font-bold rounded p-1 translate-y-1 w-max">
+                <p className="flex items-center gap-1"><Fork/>Prep Time :{recipe.readyInMinutes}</p>
+              </div>
+              <div className="bg-secondary-100 text-secondary-200 text-xs font-bold rounded p-1 translate-y-1 w-max">
+                <p className="flex items-center gap-1"><People/>Servings :{recipe.servings}</p>
+              </div>
+            </div>
           </div>
       </div>
 
-      <img src={recipe.image} alt="" className="h-56 object-cover rounded-lg mb-10" />
+      <img src={recipe.image} alt="" className="h-56 object-cover rounded-lg mb-10 w-full" />
 
       <h3 className="text-3xl my-5 pb-3 border-b border-b-slate-500">Summary</h3>
       <div className="text-md font-medium">
-        <p style={{letterSpacing:".2px",width:"80%"}} dangerouslySetInnerHTML={dangerousHTMLSummary()}></p>
+        <p style={{letterSpacing:"0.005em",lineHeight:"1.25",wordSpacing:".75px",width:"100%"}} dangerouslySetInnerHTML={dangerousHTMLSummary()}></p>
       </div>
 
       <h3 className="text-3xl my-5 pb-3 border-b border-b-slate-500">Ingredients</h3>
@@ -62,12 +60,9 @@ function Recipe() {
             </li>)}
       </ul>
 
-      <h4 className="text-3xl my-5 pb-3 border-b border-b-slate-500">Instructions</h4>
-      <ul className="list-disc container text-md font-medium" dangerouslySetInnerHTML={dangerousHTMLinstructions()}></ul>
-
       <h3 className="text-3xl my-5 pb-3 border-b border-b-slate-500">Diets</h3>
       <ul className="list-disc container text-md font-medium">
-        {recipe.diets.map(diet => <li>{diet}</li>)}
+        {recipe.diets.map((diet,index) => <li key={index}>{diet}</li>)}
       </ul></>}
     </motion.div>
   );

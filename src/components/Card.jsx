@@ -17,7 +17,8 @@ export function Card({ ID = "", imgSrc, recipe,dishTypes, time }) {
           </div>
           <div className="bg-secondary-100 text-secondary-200 text-xs font-bold rounded p-1 absolute top-2 left-2">
             <span className="flex items-center gap-1">
-              <Timer /><time>{time}</time> mins
+              <Timer />
+              <time className="whitespace-nowrap">{time} mins</time> 
             </span>
           </div>
         </Link>
