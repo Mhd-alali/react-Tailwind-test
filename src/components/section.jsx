@@ -19,9 +19,9 @@ export function Section({section,recipes}) {
          <Card ID={23} dishTypes={["Type1","Type2","Type3"]} recipe={"recipe.title"} time={45} imgSrc={"./img/4.webp"} />
          <Card ID={23} dishTypes={["Type1","Type2","Type3"]} recipe={"recipe.title"} time={45} imgSrc={"./img/5.jpg"} />
          <Card ID={23} dishTypes={["Type1","Type2","Type3"]} recipe={"recipe.title"} time={45} imgSrc={"./img/6.jpg"} /> */}
-        <div className='flex justify-center my-5 md:col-span-3'>
+{/*         <div className='flex justify-center my-5 md:col-span-3'>
           <Button className="px-10 py-3" type="primary">Load More</Button>
-        </div>
+        </div> */}
       </div>
     </section>
   </>
